@@ -7,11 +7,11 @@ Read more on stash here: [stash.tedivm.com](http://stash.tedivm.com)
 Installation
 ------------
 
-Create a composer.json your project
+Create a composer.json in your project
 
     {
         "require": {
-            "tedivm/stash": "dev-master"
+            "bt51/stash-serviceprovider": "dev-master"
         }
     }
 
