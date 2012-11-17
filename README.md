@@ -3,6 +3,8 @@ StashServiceProvider
 
 The StashServiceProvider provides the "tedivm/stash" library for silex.
 Read more on stash here: [stash.tedivm.com](http://stash.tedivm.com)
+*Note:* The StashServiceProvider uses 0.9.x version of Stash.
+Stash is under active development.
 
 Installation
 ------------
