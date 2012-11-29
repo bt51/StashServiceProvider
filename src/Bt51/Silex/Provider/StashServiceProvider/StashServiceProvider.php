@@ -13,25 +13,25 @@ namespace Bt51\Silex\Provider\StashServiceProvider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-use Stash\Cache;
+use Stash\Pool;
 
 class StashServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        if (! isset($app['stash.handler.class'])) {
-            $app['stash.handler.class'] = 'Ephemeral';
+        if (! isset($app['stash.driver.class'])) {
+            $app['stash.driver.class'] = 'Ephemeral';
         }
 
-        $app['stash.handler'] = $app->share(function ($app) {
-            $options = (isset($app['stash.handler.options']) ? $app['stash.handler.options'] : array());
-            $class = sprintf('\\Stash\\Handler\\%s', $app['stash.handler.class']);
-            $handler = new \ReflectionClass($class);
-            return $handler->newInstanceArgs(array($options));
+        $app['stash.driver'] = $app->share(function ($app) {
+            $options = (isset($app['stash.driver.options']) ? $app['stash.driver.options'] : array());
+            $class = sprintf('\\Stash\\Driver\\%s', $app['stash.driver.class']);
+            $driver = new \ReflectionClass($class);
+            return $driver->newInstanceArgs(array($options));
         });
         
         $app['stash'] = $app->share(function ($app) {
-            return new Cache($app['stash.handler']);
+            return new Pool($app['stash.driver']);
         });
     }
     

@@ -3,7 +3,7 @@ StashServiceProvider
 
 The StashServiceProvider provides the "tedivm/stash" library for silex.
 Read more on stash here: [stash.tedivm.com](http://stash.tedivm.com)
-*Note:* The StashServiceProvider uses 0.9.x version of Stash.
+*Note:* The StashServiceProvider uses master branch of Stash.
 Stash is under active development.
 
 Installation
@@ -22,14 +22,14 @@ Read more on composer here: http://getcomposer.org
 Parameters
 ----------
 
-* **stash.handler.options**: An array of options to be passed to the parser's constructor
-* **stash.handler.class**: The cache class adapter to use
+* **stash.driver.options**: An array of options to be passed to the driver's constructor
+* **stash.driver.class**: The cache class adapter to use
 
 Services
 --------
 
-* **stash**: Instance of Stash\Cache
-* **stash.handler**: Instance of Stash\Handler\{stash.handler.class}
+* **stash**: Instance of Stash\Pool
+* **stash.handler**: Instance of Stash\Handler\{stash.driver.class}
 
 Registering
 ----------

@@ -18,7 +18,7 @@ class StashServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        if (!class_exists('Stash\\Cache')) {
+        if (!class_exists('Stash\\Pool')) {
             $this->markTestSkipped('Stash is not installed');
         }
     }
@@ -29,7 +29,7 @@ class StashServiceProviderTest extends \PHPUnit_Framework_TestCase
         
         $app->register(new StashServiceProvider());
         
-        $this->assertInstanceOf('\\Stash\\Cache', $app['stash']);
+        $this->assertInstanceOf('\\Stash\\Pool', $app['stash']);
     }
     
     public function testStashGet()
@@ -43,13 +43,13 @@ class StashServiceProviderTest extends \PHPUnit_Framework_TestCase
         $key = md5(mt_rand());
         $content = md5(uniqid(mt_rand()));
         
-        $cache->setupKey(md5(mt_rand()));
-        $content = $cache->get();
+        $item = $cache->getItem(md5(mt_rand()));
+        $content = $item->get();
 
-        if ($cache->isMiss()) {
-            $cache->set($content);
+        if ($item->isMiss()) {
+            $item->set($content);
         }
         
-        $this->assertEquals($content, $cache->get($key));
+        $this->assertEquals($content, $item->get($key));
     }
 }
