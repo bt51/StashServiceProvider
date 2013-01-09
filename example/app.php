@@ -12,14 +12,14 @@ $app->register(new StashServiceProvider(),
 
 $app->get('/', function () use ($app) {
     $key = md5('fixture');
-    $cache = $app['stash'];
+    $pool = $app['stash'];
     $stashItem = $pool->getItem($key);
     
-    $content = $item->get();
+    $content = $stashItem->get();
 
     if ($stashItem->isMiss()) {
         $content = file_get_contents(__DIR__ . '/fixture');
-        $item->set($content);
+        $stashItem->set($content);
     }
     
     return new Response($content, 200, array('Content-Type' => 'text/plain'));
