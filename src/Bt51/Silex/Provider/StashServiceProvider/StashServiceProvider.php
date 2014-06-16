@@ -26,8 +26,9 @@ class StashServiceProvider implements ServiceProviderInterface
         $app['stash.driver'] = $app->share(function ($app) {
             $options = (isset($app['stash.driver.options']) ? $app['stash.driver.options'] : array());
             $class = sprintf('\\Stash\\Driver\\%s', $app['stash.driver.class']);
-            $driver = new \ReflectionClass($class);
-            return $driver->newInstanceArgs(array($options));
+            $driver  = new $class;
+            $driver->setOptions($options);
+            return $driver;            
         });
         
         $app['stash'] = $app->share(function ($app) {
