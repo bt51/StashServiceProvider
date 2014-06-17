@@ -16,11 +16,12 @@
 		"tedivm/stash": "dev-master"
 	},
 	"require-dev": {
-        "silex/silex": "1.1.*"
+        "silex/silex": "1.1.*",
+        "phpunit/phpunit": "4.3.*"
     },
 	"autoload": {
-		"psr-0": {
-			"Bt51\\Silex\\Provider\\StashServiceProvider": "src/"
+		"psr-4": {
+			"Bt51\\Silex\\Provider\\StashServiceProvider\\": "src/"
 		}
 	},
 	"minimum-stability": "dev"
